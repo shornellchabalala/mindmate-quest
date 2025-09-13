@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Your Dashboard — MindMate Quest</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">🎮 MindMate Quest</div>
+      <div><a class="nav-link" href="{{ url_for('index') }}">Home</a></div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="card header-card">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+        <div>
+          <h2>Your Dashboard</h2>
+          <div class="muted">Level {{ user_level }} | XP: {{ user_xp }}/{{ next_level_xp }}</div>
+        </div>
+        <div style="min-width:220px;">
+          {% if badges %}
+            {% for b in badges %}
+              <span class="badge">{{ b }}</span>
+            {% endfor %}
+          {% else %}
+            <span class="muted">No badges yet — keep going!</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="progress-container" style="margin-top:12px;">
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: {{ xp_percent }}%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Left column -->
+      <div>
+        <div class="card">
+          <h3>Today's AI Task</h3>
+          <p class="suggestion">{{ suggested_task }}</p>
+        </div>
+
+        <div class="card">
+          <h3>Add a Task</h3>
+          <form action="{{ url_for('add_task') }}" method="POST" class="flow">
+            <input class="input" type="text" name="task_name" placeholder="New task name" required>
+            <button class="btn" type="submit">Add Task</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>How are you feeling today?</h3>
+          <form action="{{ url_for('checkin') }}" method="POST" class="flow">
+            <select name="mood" class="input">
+              <option value="happy">Happy</option>
+              <option value="stressed">Stressed</option>
+              <option value="tired">Tired</option>
+              <option value="anxious">Anxious</option>
+              <option value="okay">Okay</option>
+            </select>
+            <button class="btn" type="submit">Submit</button>
+            {% if checkin_tip %}
+              <p class="tip">💡 {{ checkin_tip }}</p>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+
+      <!-- Right column -->
+      <div>
+        <div class="card">
+          <h3>Your Tasks</h3>
+          {% if tasks %}
+            <ul class="task-list">
+              {% for t in tasks %}
+                <li class="{% if t.completed %}done{% endif %}">
+                  <div>
+                    <strong>{{ t.name }}</strong>
+                    <div class="muted" style="font-size:0.85rem;">XP: {{ t.xp }}</div>
+                  </div>
+                  <div>
+                    {% if not t.completed %}
+                      <a class="btn small" href="{{ url_for('complete_task', task_id=t.id) }}">Mark Done</a>
+                    {% else %}
+                      <span class="muted">Completed</span>
+                    {% endif %}
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="muted">No tasks yet — add one to get started!</p>
+          {% endif %}
+        </div>
+
+        <!-- ✨ Quizzes Section -->
+        <div class="card">
+          <h3>🎯 Quests & Quizzes</h3>
+          <div class="quiz-grid">
+            {% for quiz in quizzes %}
+              <div class="quiz-card">
+                <h4>{{ quiz.title }}</h4>
+                <p>{{ quiz.description }}</p>
+                <a href="{{ url_for('start_quiz', quiz_id=quiz.id) }}" class="btn small">Start Quiz ▶</a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

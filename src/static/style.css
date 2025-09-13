@@ -1,0 +1,296 @@
+/* ---------- Fonts & root colors ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root{
+  --bg: #eef3ff;
+  --card-bg: rgba(255,255,255,0.85);
+  --accent: #6c63ff;
+  --accent-2: #8f8bff;
+  --muted: #6b7280;
+  --success: #00c897;
+}
+
+/* ---------- Reset ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+body { background: var(--bg); color: #111827; min-height: 100vh; }
+
+/* ---------- Navigation ---------- */
+nav {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: white;
+  padding: 14px 0;
+  box-shadow: 0 6px 18px rgba(99,102,241,0.12);
+}
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 1rem; display:flex; align-items:center; justify-content:space-between; }
+.logo { font-weight: 700; font-size: 1.1rem; display:flex; gap:0.5rem; align-items:center; }
+.nav-link { color: white; text-decoration:none; background: rgba(255,255,255,0.08); padding:8px 12px; border-radius:10px; }
+
+/* ---------- Hero (index) ---------- */
+.hero { display:flex; align-items:center; justify-content:center; height:60vh; }
+.hero-card { background: var(--card-bg); padding: 2rem; border-radius: 16px; width: min(760px, 94%); text-align:center; box-shadow: 0 10px 30px rgba(15,23,42,0.06); }
+.lead { color: var(--muted); margin-top:8px; margin-bottom:18px; }
+
+/* ---------- Container ---------- */
+.container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+
+/* ---------- Cards ---------- */
+.card { background: var(--card-bg); padding: 1.25rem; border-radius: 14px; margin-bottom: 1rem; box-shadow: 0 8px 24px rgba(15,23,42,0.05); }
+.header-card { margin-bottom: 1.25rem; }
+.card h2, .card h3 { color: var(--accent); margin-bottom: 8px; }
+
+/* ---------- Grid layout ---------- */
+.grid { display: grid; grid-template-columns: 1fr 420px; gap: 1rem; align-items:start; }
+@media (max-width: 920px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Task list ---------- */
+.task-list { list-style:none; padding:0; margin:0; }
+.task-list li { display:flex; justify-content:space-between; align-items:center; background: white; border-radius: 10px; padding: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(15,23,42,0.04); }
+.task-list li.done { background: #f0fff7; color: var(--muted); text-decoration:line-through; }
+
+/* ---------- Buttons & inputs ---------- */
+.btn { background: var(--accent); color: white; padding: 8px 14px; border-radius: 10px; border: none; cursor:pointer; font-weight:600; text-decoration:none; display:inline-block; }
+.btn.small { padding:6px 10px; font-size:0.9rem; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(99,102,241,0.12); }
+.input { width:100%; padding: 10px 12px; border-radius: 10px; border:1px solid #e6e9f2; margin-bottom:8px; }
+
+/* Flow helper for small forms inside cards */
+.flow { display:flex; gap:8px; align-items:center; }
+
+/* ---------- Progress bar ---------- */
+.progress-container { margin-top: 12px; }
+.progress-bar { height: 14px; background: #e6e9f2; border-radius: 10px; overflow:hidden; }
+.progress-fill { height:100%; width:0; background: linear-gradient(90deg, var(--success), #00e0b8); transition: width 0.9s ease-in-out; }
+
+/* ---------- Badges & small text ---------- */
+.badge { display:inline-block; background: var(--accent-2); color:white; padding:6px 10px; border-radius: 999px; margin-right:8px; font-size:0.85rem; }
+.muted { color: var(--muted); font-size:0.95rem; }
+.suggestion { font-size:1rem; color:#111827; }
+
+/* ---------- Tip ---------- */
+.tip { margin-top:8px; background:#fff9e6; padding:10px; border-radius:8px; color:#7a5a00; }
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width:480px) {
+  .nav-inner { padding: 0 12px; }
+  .hero { height: 50vh; }
+  .hero-card { padding: 1.25rem; }
+}
+
+
+
+/* --- Mode Toggle --- */
+.mode-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.mode-toggle button {
+  padding: 10px 20px;
+  border: none;
+  background: #f1f1f1;
+  margin: 0 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.mode-toggle button.active {
+  background: #007bff;
+  color: white;
+}
+
+/* --- Quiz UI --- */
+.quiz-question p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.quiz-option {
+  display: block;
+  width: 100%;
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.quiz-option:hover {
+  background: #0056b3;
+}
+
+
+
+
+/* Quizzes */
+.quiz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media(max-width: 600px) {
+  .quiz-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.quiz-card {
+  background: linear-gradient(135deg, #fef9c3, #fde68a);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.quiz-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
+.quiz-card h4 {
+  margin: 0.2rem 0;
+  color: #78350f;
+}
+.quiz-card p {
+  font-size: 0.85rem;
+  color: #92400e;
+  margin-bottom: 0.6rem;
+}
+
+
+/* General body and headings */
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f5f6fa;
+    color: #2c3e50;
+}
+
+h1 {
+    color: #2c3e50;
+}
+
+/* Quiz questions */
+.question {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.options {
+    margin-top: 10px;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Links */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Quiz result message */
+.message {
+    font-size: 16px;
+    color: #27ae60;
+    margin-top: 15px;
+}
+
+p {
+    font-size: 18px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Center the result page content */
+body.quiz-result {
+    text-align: center;
+}
+
+
+/* Quiz container */
+.quiz-container {
+    max-width: 700px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* Quiz questions */
+.question {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.options {
+    margin-top: 10px;
+}
+
+/* Buttons */
+button.quiz-submit {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.quiz-submit:hover {
+    background-color: #2980b9;
+}
+
+/* Links */
+a.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #3498db;
+    text-decoration: none;
+}
+
+a.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Quiz result message */
+body.quiz-result .message {
+    font-size: 16px;
+    color: #27ae60;
+    margin-top: 15px;
+}
+
+/* Centered paragraph text */
+.quiz-container p {
+    font-size: 18px;
+    margin: 10px 0;
+    text-align: center;
+}

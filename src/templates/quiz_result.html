@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ quiz.title }} - Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="quiz-result">
+    <div class="quiz-container">
+        <h1>{{ quiz.title }} - Quiz Result</h1>
+        <p><strong>Score:</strong> {{ score }} / {{ total }}</p>
+        <p><strong>XP Earned:</strong> {{ xp_earned }}</p>
+        {% if next_level_msg %}
+            <p class="message">{{ next_level_msg }}</p>
+        {% endif %}
+
+        <h2>Review</h2>
+        {% for idx in range(questions|length) %}
+            <p>
+                Q{{ idx + 1 }}: {{ questions[idx].question }}<br>
+                Your Answer: {{ request_form.get('q' ~ idx) or "Skipped" }}<br>
+                Correct Answer: {{ questions[idx].answer }}
+            </p>
+        {% endfor %}
+
+        <a href="{{ url_for('dashboard') }}" class="back-link">Back to Dashboard</a>
+    </div>
+</body>
+</html>

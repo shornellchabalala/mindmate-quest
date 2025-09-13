@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ quiz.title }} - Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>{{ quiz.title }} ({{ level.capitalize() }} Difficulty)</h1>
+        <form method="POST">
+            {% for idx in range(questions|length) %}
+                <div class="question">
+                    <strong>Q{{ idx + 1 }}: {{ questions[idx].question }}</strong>
+                    <div class="options">
+                        {% for option in questions[idx].options %}
+                            {% set letter = option.split(')')[0] %}
+                            <label>
+                                <input type="radio" name="q{{ idx }}" value="{{ letter }}" required> {{ option }}
+                            </label><br>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="quiz-submit">Submit Quiz</button>
+        </form>
+        <a href="{{ url_for('dashboard') }}" class="back-link">Back to Dashboard</a>
+    </div>
+</body>
+</html>

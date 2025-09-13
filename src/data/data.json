@@ -1,0 +1,39 @@
+{
+  "tasks": [
+    {
+      "task": "system software ",
+      "done": true
+    },
+    {
+      "task": "study maths functions",
+      "done": true
+    },
+    {
+      "task": "study englissh",
+      "done": true
+    },
+    {
+      "task": "do programming",
+      "done": true
+    },
+    {
+      "task": "do java",
+      "done": true
+    },
+    {
+      "task": "python AI",
+      "done": true
+    },
+    {
+      "task": "do java",
+      "done": true
+    }
+  ],
+  "xp": 70,
+  "level": 2,
+  "streak": 1,
+  "last_login": "2025-09-13",
+  "badges": [
+    "Bronze Learner"
+  ]
+}

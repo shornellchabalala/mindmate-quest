@@ -1,0 +1,15 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "name": "study python for 30 minutes",
+      "completed": true,
+      "xp": 20
+    }
+  ],
+  "xp": 40,
+  "badges": [],
+  "quiz_levels": {
+    "1": "medium"
+  }
+}
